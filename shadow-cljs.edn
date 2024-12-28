@@ -1,0 +1,23 @@
+{:source-paths
+ ["src"]
+
+ :dependencies 
+ [[binaryage/devtools "1.0.7"]
+  [lilactown/helix "0.2.1"]
+  [funcool/promesa "10.0.571"]]
+
+ :builds
+ {:app {:target :browser
+        :compiler-options {:output-feature-set :es6}
+        ;;:build-hooks [(debug/find-it)]
+        :output-dir "public/js"
+        :asset-path "/js"
+        :modules {:main 
+                  {:init-fn my-app.app/init}}
+        
+        :devtools {:before-load my-app.app/stop
+                   :after-load my-app.app/start
+                   
+                   :http-root    "public"
+                   :http-port    8700
+                   :preloads     [devtools.preload]}}}}
